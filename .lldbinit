@@ -1,0 +1,3 @@
+command alias -h "Evaluate a Swift expression" -- exs expression -lswift --
+
+command alias -h "Evaluate a Swift expression, stopping at existing breakpoints" -- exst expression -lswift -i0 --

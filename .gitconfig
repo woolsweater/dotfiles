@@ -2,9 +2,9 @@
     path = ".gitconfig.local"
 
 [credential]
-	helper = osxkeychain
+    helper = osxkeychain
 [core]
-	excludesfile = ~/.gitignore-global
+    excludesfile = ~/.gitignore-global
 
 [alias]
     rootdir = rev-parse --show-toplevel
@@ -32,12 +32,12 @@
     lookc = difftool -y -t Kaleidoscope HEAD~ HEAD
     
 [difftool "Kaleidoscope"]
-	cmd = ksdiff --partial-changeset --relative-path \"$MERGED\" -- \"$LOCAL\" \"$REMOTE\"
+    cmd = ksdiff --partial-changeset --relative-path \"$MERGED\" -- \"$LOCAL\" \"$REMOTE\"
 [mergetool "Kaleidoscope"]
-	cmd = ksdiff --merge --output \"$MERGED\" --base \"$BASE\" -- \"$LOCAL\" --snapshot \"$REMOTE\" --snapshot
-	trustexitcode = true
+    cmd = ksdiff --merge --output \"$MERGED\" --base \"$BASE\" -- \"$LOCAL\" --snapshot \"$REMOTE\" --snapshot
+    trustexitcode = true
 [merge]
-	tool = merge-switch
+    tool = merge-switch
 [mergetool "merge-switch"]
-	cmd = /usr/local/bin/git-merge-switch \"${BASE}\" \"${MERGED}\" \"${LOCAL}\" \"${REMOTE}\"
+    cmd = /usr/local/bin/git-merge-switch \"${BASE}\" \"${MERGED}\" \"${LOCAL}\" \"${REMOTE}\"
     trustexitcode = true
