@@ -16,6 +16,8 @@ alias sed=gsed
 alias rm='rm -i'
 
 export EDITOR=/usr/bin/emacs
+export HISTSIZE=1000
+export SAVEHIST=${HISTSIZE}
 
 autoload -U select-word-style
 select-word-style bash
@@ -41,7 +43,15 @@ function findn () {
 
 function findmate () {
     # Find files and open them in TextMate
-    find . -name "$1" -exec mate "{}" \;
+    if [[ 2 -eq $# ]]; then
+        dir="${1}"
+        term="${2}"
+    else
+        dir='.'
+        term="${1}"
+    fi
+
+    find "${dir}" -name "${term}" \( -not -path "*/DerivedData/*" \) -exec mate "{}" \;
 }
 # Allow strings that contain glob chars to be passed directly to find before
 # expanding https://stackoverflow.com/a/22945024/603977
