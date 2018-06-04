@@ -13,7 +13,7 @@
     ci = commit
     cif = commit -e -F commit-message.md
     st = status
-    sq = reabase -i
+    sq = rebase -i
 
     unstage = reset HEAD --
     discard = reset --hard HEAD
