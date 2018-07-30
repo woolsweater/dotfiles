@@ -24,7 +24,8 @@
     fom = fetch origin master
     mom = merge origin master
     rbm = rebase master
-    updatem = !"git com; git fom; git mom;"
+    updatem = !"git com && git fom && git mom;"
+    rbbr = !"git co $1 && git rbm"
     
     kalm = mergetool -y -t Kaleidoscope
     kald = difftool -y -t Kaleidoscope
