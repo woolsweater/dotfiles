@@ -15,9 +15,10 @@ alias sed=gsed
 
 alias rm='rm -i'
 
-export EDITOR=/usr/bin/emacs
-export HISTSIZE=1000
-export SAVEHIST=${HISTSIZE}
+macports_prefix="/opt/local"
+export EDITOR=emacs
+export PATH="${macports_prefix}/bin:${macports_prefix}/sbin:${PATH}"
+export HISTSIZE=10000
 
 autoload -U select-word-style
 select-word-style bash
@@ -25,10 +26,18 @@ select-word-style bash
 setopt GLOBcomplete
 
 export APPSUPPORT="${HOME}/Library/Application Support"
-export DERIVEDDATA="${HOME}/Library/Developer/Xcode/DerivedData"
 
 # Prevent Homebrew from using my personal GitHub credentials. (!)
 export HOMEBREW_NO_GITHUB_API=1
+
+# Use default venv for Python
+# Prevent overriding prompt (venv prepends the environment name)
+VIRTUAL_ENV_DISABLE_PROMPT=1
+source ~/.venvs/default/bin/activate
+
+export FZF_DEFAULT_COMMAND='fd --type f'
+export FZF_DEFAULT_OPTS='--bind "alt-m:execute(mate {})+abort,alt-c:execute(pbcopy {})"'
+source "${macports_prefix}/share/zsh/site-functions/fzf"
 
 function mkchdir () {
     # Create a directory and immediately move into it
@@ -36,31 +45,9 @@ function mkchdir () {
     cd $1
 }
 
-function findn () {
-    # Find files shortcut
-    find . -name "$1"
-}
-
-function findmate () {
-    # Find files and open them in TextMate
-    if [[ 2 -eq $# ]]; then
-        dir="${1}"
-        term="${2}"
-    else
-        dir='.'
-        term="${1}"
-    fi
-
-    find "${dir}" -name "${term}" \( -not -path "*/DerivedData/*" \) -exec mate "{}" \;
-}
-# Allow strings that contain glob chars to be passed directly to find before
-# expanding https://stackoverflow.com/a/22945024/603977
-alias find='noglob find'
-alias findmate='noglob findmate'
-
 function dotfile () {
     # Interact with .dotfiles repo via the command name "dotfile"
-    /usr/bin/git --git-dir="${HOME}/.dotfiles" --work-tree="${HOME}" $@
+    git --git-dir="${HOME}/.dotfiles" --work-tree="${HOME}" $@
 }
 
 ##

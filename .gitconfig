@@ -23,6 +23,7 @@
     com = checkout master
     fom = fetch origin master
     mom = merge origin master
+    pom = push origin master
     rbm = rebase master
     updatem = !"git com && git fom && git mom;"
     rbbr = !"git co $1 && git rbm"
