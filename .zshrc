@@ -33,11 +33,13 @@ export HOMEBREW_NO_GITHUB_API=1
 # Use default venv for Python
 # Prevent overriding prompt (venv prepends the environment name)
 VIRTUAL_ENV_DISABLE_PROMPT=1
-source ~/.venvs/default/bin/activate
+activate_venv="${HOME}/.venvs/default/bin/activate"
+[ -f "${activate_venv}" ] && source "${activate_venv}"
 
 export FZF_DEFAULT_COMMAND='fd --type f'
 export FZF_DEFAULT_OPTS='--bind "alt-m:execute(mate {})+abort,alt-c:execute(pbcopy {})"'
-source "${macports_prefix}/share/zsh/site-functions/fzf"
+fzf_comps="${macports_prefix}/share/zsh/site-functions/fzf"
+[ -f "${fzf_comps}" ] && source "${fzf_comps}"
 
 function mkchdir () {
     # Create a directory and immediately move into it
