@@ -52,8 +52,14 @@ function dotfile () {
     git --git-dir="${HOME}/.dotfiles" --work-tree="${HOME}" $@
 }
 
+function edit_script () {
+    mate "$(which ${1})"
+}
+
 ##
 # Include config specific to this machine if present.
+# Looks adjacent to this file, wherever it is located.
 # Performed last to allow overrides if needed.
 ##
-[ -f .zshrc.local ] && source .zshrc.local 
+localrc="$(dirname ${(%):-%N})/.zshrc.local"
+[ -f "${localrc}" ] && source "${localrc}"
