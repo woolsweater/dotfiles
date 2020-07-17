@@ -19,6 +19,7 @@ macports_prefix="/opt/local"
 export EDITOR=emacs
 export PATH="${macports_prefix}/bin:${macports_prefix}/sbin:${PATH}"
 export HISTSIZE=10000
+export SAVEHIST=0
 
 autoload -U select-word-style
 select-word-style bash
